@@ -295,9 +295,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f62df9ef68f3c4ba4571aa0fb93ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smoothSpeed: 0.09
+  smoothSpeed: 0.02
   target: {fileID: 2059949412}
   offset: {x: 0, y: 0, z: -10}
+  deadzoneSize: {x: 1, y: 1}
 --- !u!1 &1797504684
 GameObject:
   m_ObjectHideFlags: 0
