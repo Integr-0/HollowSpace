@@ -384,10 +384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 6844321481297354273}
-  scriptsToPause:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  scriptsToPause: []
   OnGamePaused:
     m_PersistentCalls:
       m_Calls: []
