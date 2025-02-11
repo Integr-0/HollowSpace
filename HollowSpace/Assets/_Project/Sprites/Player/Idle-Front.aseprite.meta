@@ -121,7 +121,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Indle-Front
+  - name: Idle-Front
     originalName: 
     pivot: {x: 0.5, y: 0}
     alignment: 9
@@ -132,7 +132,7 @@ ScriptedImporter:
       y: 4
       width: 28
       height: 61
-    spriteID: f33c66d7c1f9ded4fb39d8f5a179adb0
+    spriteID: e1084a84c4f0e2759a9d0e67f9076f7b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -144,13 +144,13 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1227376262
-    name: Indle-Front
+    guid: -927254186
+    name: Idle-Front
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Indle-Front
+    - name: Idle-Front
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
@@ -158,7 +158,7 @@ ScriptedImporter:
         y: 0
         width: 28
         height: 61
-      spriteId: f33c66d7c1f9ded4fb39d8f5a179adb0
+      spriteId: e1084a84c4f0e2759a9d0e67f9076f7b
     linkedCells: []
     parentIndex: -1
   platformSettings: []
