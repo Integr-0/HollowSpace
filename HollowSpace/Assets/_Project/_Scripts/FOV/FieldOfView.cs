@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// I love you Code Monkey and thanks for this tutoral: https://www.youtube.com/watch?v=CSeUMTaNFYk
 public class FieldOfView : MonoBehaviour
 {
     [SerializeField] private Transform followObject;

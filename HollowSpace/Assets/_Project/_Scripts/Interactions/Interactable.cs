@@ -4,10 +4,10 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour
 {
     [SerializeField, Tooltip("What to do when interacted with")] 
-    private UnityEvent _action;
-    public void Interact()
+    private UnityEvent<InteractionAgent> _action;
+    public void Interact(InteractionAgent agent)
     {
-        print("Interacted with " + name);
-        _action?.Invoke();
+        print($"{agent.name} interacted with {name}");
+        _action?.Invoke(agent);
     }
 }

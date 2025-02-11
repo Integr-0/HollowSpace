@@ -26,7 +26,7 @@ public class InteractionAgent : MonoBehaviour
 
         if (_interactionPressed)
         {
-            _closest?.Interact();
+            _closest?.Interact(this);
         }
     }
 
