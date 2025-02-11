@@ -2,39 +2,56 @@ using UnityEngine;
 
 public class CamFollow : MonoBehaviour
 {
-    [SerializeField] private float smoothSpeed = 0.125f;
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 offset = new(0, 0, -10);
-    [SerializeField] private Vector2 deadzoneSize = new Vector2(100, 100);
+    [SerializeField] private Vector2 deadzoneSize = new(2, 2);
 
-    private Vector3 _currentTarget;
-    private bool _following = false;
 
-    private void LateUpdate()
+    /*
+        Current camera behavior:
+        - If the target moves outside the deadzone, the camera instantly follows, but keeps the player on the edge of the deadzone
+        - The camera does not move if the target is inside the deadzone
+
+        This behaviour provides a good balance between keeping the player in the center of the screen and not moving the camera too much
+        when the player moves slightly.
+    */
+    private void FixedUpdate() {
+        if (target == null) return;
+
+        Vector3 desiredPosition = CalculateDesiredPosition();
+        if (ShouldFollow(desiredPosition))
+        {
+            transform.position = CalculateSmoothedPosition(desiredPosition);
+        }
+    }
+
+    private Vector3 CalculateDesiredPosition()
     {
-        Vector3 targetPosition = target.position + offset;
-        Vector3 delta = targetPosition - transform.position;
+        return target.position + offset;
+    }
 
-        if ((Mathf.Abs(delta.x) > deadzoneSize.x / 2 || Mathf.Abs(delta.y) > deadzoneSize.y / 2)
-            && !_following)
+    private Vector3 CalculateSmoothedPosition(Vector3 desiredPosition)
+    {
+        Vector3 smoothedPosition = transform.position;
+        Vector3 delta = desiredPosition - transform.position;
+
+        if (Mathf.Abs(delta.x) > deadzoneSize.x / 2)
         {
-            _currentTarget = new Vector3(
-                Mathf.Abs(delta.x) > deadzoneSize.x / 2 ? targetPosition.x : transform.position.x,
-                Mathf.Abs(delta.y) > deadzoneSize.y / 2 ? targetPosition.y : transform.position.y,
-                targetPosition.z
-            );
-            _following = true;
+            smoothedPosition.x = desiredPosition.x - Mathf.Sign(delta.x) * deadzoneSize.x / 2;
         }
 
-        if (_following)
+        if (Mathf.Abs(delta.y) > deadzoneSize.y / 2)
         {
-            Vector3 smoothedPosition = Vector3.Lerp(transform.position, _currentTarget, smoothSpeed);
-            transform.position = smoothedPosition;
+            smoothedPosition.y = desiredPosition.y - Mathf.Sign(delta.y) * deadzoneSize.y / 2;
         }
-        if ((_currentTarget - transform.position).sqrMagnitude < 0.1f)
-        {
-            _following = false;
-        }
+
+        return smoothedPosition;
+    }
+
+    private bool ShouldFollow(Vector3 desiredPosition)
+    {
+        Vector3 delta = desiredPosition - transform.position;
+        return Mathf.Abs(delta.x) > deadzoneSize.x / 2 || Mathf.Abs(delta.y) > deadzoneSize.y / 2;
     }
 
     private void OnDrawGizmos()
@@ -42,6 +59,6 @@ public class CamFollow : MonoBehaviour
         if (target == null) return;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(target.position + offset, new Vector3(deadzoneSize.x, deadzoneSize.y, 0));
+        Gizmos.DrawWireCube(transform.position, deadzoneSize);
     }
 }
