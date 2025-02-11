@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3595182664082133031}
   - component: {fileID: 8335594761024195346}
   - component: {fileID: 7365798570962740494}
-  - component: {fileID: 5889521054812415436}
+  - component: {fileID: 8544940151645946433}
   - component: {fileID: 3629092255231150564}
   m_Layer: 0
   m_Name: Player
@@ -114,7 +114,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5889521054812415436
+--- !u!114 &8544940151645946433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,5 +149,5 @@ MonoBehaviour:
   interactionLayer:
     serializedVersion: 2
     m_Bits: 4294967295
-  interactionKey: 101
+  interactionKeyOverride: 0
   interactionIcon: {fileID: 0}

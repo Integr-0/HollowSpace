@@ -50,9 +50,9 @@ public class CharacterController : MonoBehaviour
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         _movement = new Vector2(horizontal, vertical).normalized;
-        
-        _sneaking = Input.GetKey(KeyCode.LeftControl);
-        _sprinting = Input.GetKey(KeyCode.LeftShift) && _currentStamina > sprintStartStamina;
+
+        _sneaking = Input.GetButton("Sneak");
+        _sprinting = Input.GetButton("Sprint") && _currentStamina > sprintStartStamina;
         
         // Move
         Move();

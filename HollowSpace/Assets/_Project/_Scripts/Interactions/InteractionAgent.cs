@@ -7,9 +7,14 @@ public class InteractionAgent : MonoBehaviour
     public float interactionRange = 2f;
 
     [SerializeField] private LayerMask interactionLayer;
-    [SerializeField] private KeyCode interactionKey = KeyCode.E;
+    [SerializeField] private KeyCode interactionKeyOverride = KeyCode.None;
 
     [Space, SerializeField] private Transform interactionIcon;
+    
+    private bool _hasOverride => interactionKeyOverride != KeyCode.None;
+
+    private bool _interactionPressed =>
+        _hasOverride ? Input.GetKeyDown(interactionKeyOverride) : Input.GetButtonDown("Interact");
 
     private Interactable _closest;
 
@@ -19,7 +24,7 @@ public class InteractionAgent : MonoBehaviour
         if (_closest) ShowIcon();
         else HideIcon();
 
-        if (Input.GetKeyDown(interactionKey))
+        if (_interactionPressed)
         {
             _closest?.Interact();
         }
