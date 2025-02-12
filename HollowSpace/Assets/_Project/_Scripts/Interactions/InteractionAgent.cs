@@ -33,7 +33,7 @@ public class InteractionAgent : MonoBehaviour
     private void ShowIcon()
     {
         interactionIcon.gameObject.SetActive(true);
-        interactionIcon.position = _closest.transform.position + Vector3.up;
+        interactionIcon.position = Camera.main.WorldToScreenPoint(_closest.transform.position + Vector3.up);
     }
 
     private void HideIcon()
