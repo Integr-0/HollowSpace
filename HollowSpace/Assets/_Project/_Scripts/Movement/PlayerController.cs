@@ -3,7 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
-    private static readonly int IsMoving = Animator.StringToHash("Moving");
+    private static readonly int IsMovingHorizontal = Animator.StringToHash("MovingHorizontal");
+    private static readonly int IsMovingVertical = Animator.StringToHash("MovingVertical");
     private static readonly int IsSneaking = Animator.StringToHash("Sneaking");
     private static readonly int IsSprinting = Animator.StringToHash("Sprinting");
     private static readonly int Vertical = Animator.StringToHash("Vertical");
@@ -16,19 +17,19 @@ public class PlayerController : MonoBehaviour
         Left,
         Right
     }
-    
-    [Header("Movement")] [SerializeField] private float speed = 5f;
+
+    [Header("Movement")][SerializeField] private float speed = 5f;
 
     [SerializeField] private float sprintSpeedMultiplier = 1.5f;
     [SerializeField] private float sneakSpeedMultiplier = 0.75f;
 
-    [Header("Stamina")] [SerializeField] private float maxStamina = 100f;
+    [Header("Stamina")][SerializeField] private float maxStamina = 100f;
     [SerializeField] private float staminaRegenRate = 10f;
     [SerializeField] private float staminaDepletionRate = 10f;
     [SerializeField, Tooltip("The minimum stamina to initialize a sprint")]
     private float sprintStartStamina = 10f;
-    
-    [Header("Animation")] [SerializeField] private Animator animator;
+
+    [Header("Animation")][SerializeField] private Animator animator;
 
     private Rigidbody2D _rb;
     private float _currentStamina;
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
         _sneaking = Input.GetButton("Sneak");
         _sprinting = Input.GetButton("Sprint") && _currentStamina > sprintStartStamina;
-        
+
         // Move
         Move();
     }
@@ -86,16 +87,14 @@ public class PlayerController : MonoBehaviour
         {
             currentSpeed *= sprintSpeedMultiplier;
         }
-        
+
         _rb.velocity = _movement * currentSpeed;
-        
+
         // Update animator values
-        if (_movement != Vector2.zero)
-        {
-            animator.SetFloat(Horizontal, _movement.x);
-            animator.SetFloat(Vertical, _movement.y);
-        }
-        animator.SetBool(IsMoving, currentSpeed > 0.1);
+        animator.SetFloat(Horizontal, _movement.x);
+        animator.SetFloat(Vertical, _movement.y);
+        animator.SetBool(IsMovingVertical, _movement.y != 0);
+        animator.SetBool(IsMovingHorizontal, _movement.x != 0);
         animator.SetBool(IsSneaking, _sneaking);
         animator.SetBool(IsSprinting, _sprinting && !_sneaking);
     }
