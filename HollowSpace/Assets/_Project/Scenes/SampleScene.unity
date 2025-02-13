@@ -385,8 +385,8 @@ MonoBehaviour:
   - {x: 0.5, y: 0.5, z: 0}
   - {x: 0.5, y: -0.5, z: 0}
   m_ShapePathHash: 0
-  m_Mesh: {fileID: 2009312695}
-  m_InstanceId: -117184
+  m_Mesh: {fileID: 1919751314}
+  m_InstanceId: 30826
   m_LocalBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
@@ -520,7 +520,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3595182664082133031, guid: 4cd4f214d6b746c08bd3bd4b19dd6c88, type: 3}
   m_PrefabInstance: {fileID: 1388220297}
   m_PrefabAsset: {fileID: 0}
---- !u!43 &2009312695
+--- !u!43 &1919751314
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
