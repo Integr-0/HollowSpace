@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -39,10 +38,11 @@ public class LightToggleEditorWindow : EditorWindow
             light.enabled = false;
         }
         
-        // Create a new global light
-        _globalLight = new GameObject("Global Light");
-        var lightComponent = _globalLight.AddComponent<Light2D>();
-        lightComponent.lightType = Light2D.LightType.Global;
+        // Create a new global light, if it doesn't exist already
+        if (!_globalLight)
+        {
+            CreateGlobalLight();
+        }
     }
 
     private void TurnOnLights()
@@ -57,5 +57,12 @@ public class LightToggleEditorWindow : EditorWindow
         {
             DestroyImmediate(_globalLight);
         }
+    }
+
+    private void CreateGlobalLight()
+    {
+        _globalLight = new GameObject("Global Light");
+        var lightComponent = _globalLight.AddComponent<Light2D>();
+        lightComponent.lightType = Light2D.LightType.Global;
     }
 }
