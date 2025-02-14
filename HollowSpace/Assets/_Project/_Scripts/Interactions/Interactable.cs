@@ -1,13 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField, Tooltip("What to do when interacted with")] 
-    private UnityEvent<InteractionAgent> _action;
+    [Tooltip("What to do when interacted with")] 
+    public UnityEvent<InteractionAgent> Action;
     public void Interact(InteractionAgent agent)
     {
         print($"{agent.name} interacted with {name}");
-        _action?.Invoke(agent);
+        Action?.Invoke(agent);
     }
 }
