@@ -36,6 +36,6 @@ public class PlayerHUD : MonoBehaviour
 
     private void OnDeath()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneController.Instance.LoadMainMenuAsync();
     }
 }

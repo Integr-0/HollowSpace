@@ -4,11 +4,7 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     public UnityEvent OnDeath;
-    /// <summary>
-    /// Event that is called when the object takes damage.
-    /// Parameters: damage taken, current health.
-    /// </summary>
-    public UnityEvent<float, float> OnDamageTaken;
+    public UnityEvent<float, float> OnDamageTaken; // damage taken, current health
     public UnityEvent<float> OnMaxHealthChanged;
     
     [SerializeField] private float maxHealth;
@@ -35,5 +31,7 @@ public class Health : MonoBehaviour
     {
         maxHealth = health;
         if (resetHealth) CurrentHealth = maxHealth;
+        
+        OnMaxHealthChanged?.Invoke(maxHealth);
     }
 }
