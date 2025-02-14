@@ -37,7 +37,6 @@ public class EnemyPathfind : MonoBehaviour
         // For now, just move towards the target
         // TODO: actual pathfinding
         
-        // Enemy is scared of light
         if (LightChecker.IsIlluminatedCachedNoCast(transform.position)) return;
         
         var direction = (target.position - transform.position).normalized;
