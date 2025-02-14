@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb29b79cb0ab6e419b775069d968024, type: 3}
+  m_Name: DoorTile
+  m_EditorClassIdentifier: 
+  openedSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  closedSprite: {fileID: -733368585404510151, guid: dd785161529d0b5d8a9c17399146dba7, type: 3}
+  interactionPrefab: {fileID: 6385497607321363711, guid: 42c456d8eae24ea418ec7e66004d2400, type: 3}

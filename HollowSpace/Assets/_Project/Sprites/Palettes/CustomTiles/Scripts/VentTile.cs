@@ -11,12 +11,10 @@ public class VentTile : TileBase
     public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
     {
         if (!go) return false;
-
-        Debug.Log(position);
-        go.transform.position = position - new Vector3(0.5f, 0, 0);
         
-        var interactable = go.GetComponent<Interactable>();
-        if (interactable != null)
+        //go.transform.position = position - new Vector3(0.5f, 0, 0);
+        
+        if (go.TryGetComponent<Interactable>(out var interactable))
         {
             interactable.Action.RemoveAllListeners();
             interactable.Action.AddListener(OnInteract);
