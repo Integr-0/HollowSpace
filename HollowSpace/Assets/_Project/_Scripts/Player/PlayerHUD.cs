@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHUD : MonoBehaviour
@@ -14,6 +15,7 @@ public class PlayerHUD : MonoBehaviour
         
         health.OnDamageTaken.AddListener(UpdateHealthSlider);
         health.OnMaxHealthChanged.AddListener(UpdateMaxHealth);
+        health.OnDeath.AddListener(OnDeath);
     }
     
     private void UpdateHealthSlider(float damageTaken, float currentHealth)
@@ -30,5 +32,10 @@ public class PlayerHUD : MonoBehaviour
     {
         staminaSlider.maxValue = maxStamina;
         staminaSlider.value = currentStamina;
+    }
+
+    private void OnDeath()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
