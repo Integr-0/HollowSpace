@@ -49,6 +49,7 @@ public static class LightChecker {
         Vector2 directionToPoint = (point - (Vector2)light.transform.position).normalized;
         float angleToLight = Vector2.Angle(light.transform.up, directionToPoint);
 
-        return distanceToLight <= light.pointLightOuterRadius && angleToLight <= light.pointLightOuterAngle;
+        Debug.Log(angleToLight);
+        return distanceToLight <= light.pointLightOuterRadius && angleToLight <= light.pointLightOuterAngle * 0.5;
     }
 }
