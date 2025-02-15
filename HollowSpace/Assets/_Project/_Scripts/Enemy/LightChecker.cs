@@ -14,7 +14,7 @@ public static class LightChecker {
     /// This version doesn't use any raycasting, so it's faster, but less accurate.
     /// </summary>
     /// <param name="point">The point to check</param>
-    /// /// <param name="includeOuterRadius">If the outer radius should be included in the check, or just the inner radius</param>
+    /// /// <param name="includeOuterRadius">If the outer radius should be included in the check, or just the inner radius (for point lights)</param>
     /// <returns>If the point is illuminated by any light</returns>
     public static bool IsIlluminatedNoCast(Vector2 point, bool includeOuterRadius = true)
     {
@@ -30,7 +30,7 @@ public static class LightChecker {
     /// This version also doesn't use any raycasting, so it's faster, but less accurate.
     /// </summary>
     /// <param name="point">The point to check</param>
-    /// /// <param name="includeOuterRadius">If the outer radius should be included in the check, or just the inner radius</param>
+    /// /// <param name="includeOuterRadius">If the outer radius should be included in the check, or just the inner radius (for point lights)</param>
     /// <returns>If the point is illuminated by any light</returns>
     public static bool IsIlluminatedCachedNoCast(Vector2 point, bool includeOuterRadius = true) {
         if (_lights.Length == 0 && !_initialized) return IsIlluminatedNoCast(point); // If the array is empty, we need to update it
@@ -43,10 +43,12 @@ public static class LightChecker {
     /// </summary>
     /// <param name="point">The point to check</param>
     /// <param name="light">The light to check if it illuminates the point</param>
-    /// <param name="includeOuterRadius">If the outer radius should be included in the check, or just the inner radius</param>
+    /// <param name="includeOuterRadius">If the outer radius should be included in the check, or just the inner radius (for point lights)</param>
     /// <returns>If the point is illuminated by this specific light</returns>
     /// <exception cref="ArgumentException">Thrown when the light is of any other type than LightType.Point or LightType.Global</exception>
     public static bool IsIlluminatedByLight(Vector2 point, Light2D light, bool includeOuterRadius = true) {
+        if (!light.enabled) return false;
+        
         return light.lightType switch {
             Light2D.LightType.Point => IsIlluminatedByPointLight(point, light, includeOuterRadius),
             Light2D.LightType.Global => true,

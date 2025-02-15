@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 
+[RequireComponent(typeof(Collider2D))]
 public class Interactable : MonoBehaviour
 {
     [Tooltip("What to do when interacted with")] 

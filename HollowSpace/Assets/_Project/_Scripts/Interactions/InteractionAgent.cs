@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class InteractionAgent : MonoBehaviour {
-    public float interactionRange = 2f;
+    [SerializeField] private float interactionRange = 2f;
 
     [SerializeField] private LayerMask interactionLayer;
     [SerializeField] private KeyCode interactionKeyOverride = KeyCode.None;
