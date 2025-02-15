@@ -1,70 +1,70 @@
 using UnityEngine;
 
-public class InteractionAgent : MonoBehaviour
-{
-    [Header("Interaction")] [SerializeField]
+public class InteractionAgent : MonoBehaviour {
     public float interactionRange = 2f;
 
     [SerializeField] private LayerMask interactionLayer;
     [SerializeField] private KeyCode interactionKeyOverride = KeyCode.None;
 
     [Space, SerializeField] private Transform interactionIcon;
-    
-    private bool _hasOverride => interactionKeyOverride != KeyCode.None;
 
-    private bool _interactionPressed =>
-        _hasOverride ? Input.GetKeyDown(interactionKeyOverride) : Input.GetButtonDown("Interact");
+    [SerializeField, Tooltip("The camera to use for transforming the position of the icon to screen-space (Leave empty to use main camera)")]
+    private Camera cam;
+
+    private bool HasOverride => interactionKeyOverride != KeyCode.None;
+
+    private bool InteractionPressed =>
+        HasOverride ? Input.GetKeyDown(interactionKeyOverride) : Input.GetButtonDown("Interact");
+    
+    private Camera Cam => cam ? cam : Camera.main;
 
     private Interactable _closest;
 
-    private void Update()
-    {
+    private void Update() {
         _closest = GetClosestInteractable();
         if (_closest) ShowIcon();
         else HideIcon();
 
-        if (_interactionPressed)
-        {
+        if (InteractionPressed) {
             _closest?.Interact(this);
         }
     }
 
-    private void ShowIcon()
-    {
+    private void ShowIcon() {
         interactionIcon.gameObject.SetActive(true);
-        interactionIcon.position = Camera.main.WorldToScreenPoint(_closest.transform.position + new Vector3(0, 0.5f, 0));
+        interactionIcon.position = Cam.WorldToScreenPoint(_closest.transform.position + new Vector3(0, 0.5f, 0));
     }
 
-    private void HideIcon()
-    {
+    private void HideIcon() {
         interactionIcon.gameObject.SetActive(false);
     }
 
-    private Interactable GetClosestInteractable()
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactionRange, interactionLayer);
+    private Interactable GetClosestInteractable() {
+        Collider2D[] colliders = GetInteractablesInRange(3);
+        
         Interactable closestInteractable = null;
         float closestSqrDistance = float.MaxValue;
 
-        foreach (var collider in colliders)
-        {
-            Interactable interactable = collider.GetComponent<Interactable>();
-            if (interactable != null)
-            {
-                float sqrDistance = (transform.position - interactable.transform.position).sqrMagnitude;
-                if (sqrDistance < closestSqrDistance)
-                {
-                    closestInteractable = interactable;
-                    closestSqrDistance = sqrDistance;
-                }
+        foreach (Collider2D col in colliders) {
+            if (!col.TryGetComponent<Interactable>(out var interactable)) continue;
+            
+            float sqrDistance = (transform.position - interactable.transform.position).sqrMagnitude;
+            if (sqrDistance < closestSqrDistance) {
+                closestInteractable = interactable;
+                closestSqrDistance = sqrDistance;
             }
         }
 
         return closestInteractable;
     }
+    
+    private Collider2D[] GetInteractablesInRange(int allocSize) {
+        Collider2D[] results = new Collider2D[allocSize];
+        int size = Physics2D.OverlapCircleNonAlloc(transform.position, interactionRange, results, interactionLayer);
+        return results[..size];
+    }
 
-    private void OnDrawGizmosSelected()
-    {
+    private void OnDrawGizmosSelected() {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, interactionRange);
     }
