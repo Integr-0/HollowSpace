@@ -13,13 +13,14 @@ public static class LightChecker {
     /// IMPORTANT: Only works for global and point 2D lights.
     /// This version doesn't use any raycasting, so it's faster, but less accurate.
     /// </summary>
-    /// <param name="point"></param>
-    /// <returns></returns>
-    public static bool IsIlluminatedNoCast(Vector2 point)
+    /// <param name="point">The point to check</param>
+    /// /// <param name="includeOuterRadius">If the outer radius should be included in the check, or just the inner radius</param>
+    /// <returns>If the point is illuminated by any light</returns>
+    public static bool IsIlluminatedNoCast(Vector2 point, bool includeOuterRadius = true)
     {
         _lights = Object.FindObjectsOfType<Light2D>();
         _initialized = true;
-        return _lights.Any(light => IsIlluminatedByLight(point, light));
+        return _lights.Any(light => IsIlluminatedByLight(point, light, includeOuterRadius));
     }
     
     /// <summary>
@@ -28,15 +29,24 @@ public static class LightChecker {
     /// This version uses a cached array of lights to avoid calling FindObjectsOfType every time.
     /// This version also doesn't use any raycasting, so it's faster, but less accurate.
     /// </summary>
-    /// <param name="point"></param>
-    /// <returns></returns>
-    public static bool IsIlluminatedCachedNoCast(Vector2 point) {
+    /// <param name="point">The point to check</param>
+    /// /// <param name="includeOuterRadius">If the outer radius should be included in the check, or just the inner radius</param>
+    /// <returns>If the point is illuminated by any light</returns>
+    public static bool IsIlluminatedCachedNoCast(Vector2 point, bool includeOuterRadius = true) {
         if (_lights.Length == 0 && !_initialized) return IsIlluminatedNoCast(point); // If the array is empty, we need to update it
         
-        return _lights.Any(light => IsIlluminatedByLight(point, light));
+        return _lights.Any(light => IsIlluminatedByLight(point, light, includeOuterRadius));
     }
 
-    public static bool IsIlluminatedByLight(Vector2 point, Light2D light) {
+    /// <summary>
+    /// Checks, if a point is illuminated by a specific light.
+    /// </summary>
+    /// <param name="point">The point to check</param>
+    /// <param name="light">The light to check if it illuminates the point</param>
+    /// <param name="includeOuterRadius">If the outer radius should be included in the check, or just the inner radius</param>
+    /// <returns>If the point is illuminated by this specific light</returns>
+    /// <exception cref="ArgumentException">Thrown when the light is of any other type than LightType.Point or LightType.Global</exception>
+    public static bool IsIlluminatedByLight(Vector2 point, Light2D light, bool includeOuterRadius = true) {
         return light.lightType switch {
             Light2D.LightType.Point => IsIlluminatedByPointLight(point, light),
             Light2D.LightType.Global => true,
@@ -44,11 +54,14 @@ public static class LightChecker {
         };
     }
 
-    private static bool IsIlluminatedByPointLight(Vector2 point, Light2D light) {
+    private static bool IsIlluminatedByPointLight(Vector2 point, Light2D light, bool includeOuterRadius = true) {
         float distanceToLight = Vector2.Distance(point, light.transform.position);
         Vector2 directionToPoint = (point - (Vector2)light.transform.position).normalized;
         float angleToLight = Vector2.Angle(light.transform.up, directionToPoint);
+        
+        float lightRadius = includeOuterRadius ? light.pointLightOuterRadius : light.pointLightInnerRadius;
+        float lightAngle = includeOuterRadius ? light.pointLightOuterAngle : light.pointLightInnerAngle;
 
-        return distanceToLight <= light.pointLightOuterRadius && angleToLight <= light.pointLightOuterAngle * 0.5;
+        return distanceToLight <= lightRadius && angleToLight <= lightAngle * 0.5;
     }
 }
