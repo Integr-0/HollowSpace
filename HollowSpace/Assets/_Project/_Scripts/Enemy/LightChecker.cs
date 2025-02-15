@@ -48,7 +48,7 @@ public static class LightChecker {
     /// <exception cref="ArgumentException">Thrown when the light is of any other type than LightType.Point or LightType.Global</exception>
     public static bool IsIlluminatedByLight(Vector2 point, Light2D light, bool includeOuterRadius = true) {
         return light.lightType switch {
-            Light2D.LightType.Point => IsIlluminatedByPointLight(point, light),
+            Light2D.LightType.Point => IsIlluminatedByPointLight(point, light, includeOuterRadius),
             Light2D.LightType.Global => true,
             _ => throw new ArgumentException("Light type not supported.")
         };
