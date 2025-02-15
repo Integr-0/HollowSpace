@@ -9,7 +9,7 @@ public class SceneController : MonoBehaviour
     public const int LEVEL_OFFSET = 1;
 
     [SerializeField] private GameObject loadingScreen;
-    private int activeLevel = -1;
+    private int _activeLevel = -1;
 
     public static SceneController Instance;
 
@@ -30,14 +30,14 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.LoadScene(PLAYER);
         SceneManager.LoadScene(LEVEL_OFFSET + level, LoadSceneMode.Additive);
-        activeLevel = level;
+        _activeLevel = level;
     }
 
     public void LoadLevelAsync(int level)
     {
         LoadSceneAsync(PLAYER);
         LoadSceneAsync(LEVEL_OFFSET + level, LoadSceneMode.Additive);
-        activeLevel = level;
+        _activeLevel = level;
     }
 
 
@@ -68,5 +68,5 @@ public class SceneController : MonoBehaviour
         loadingScreen.SetActive(false);
     }
 
-    public int GetActiveLevel() => activeLevel;
+    public int GetActiveLevel() => _activeLevel;
 }
