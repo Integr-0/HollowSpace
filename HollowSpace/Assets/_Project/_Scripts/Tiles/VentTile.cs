@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(menuName = "Tiles/Vent Tile")]
@@ -6,13 +7,11 @@ public class VentTile : TileBase
 {
     [SerializeField] private Sprite sprite;
     [SerializeField] private GameObject interactionPrefab;
-    [SerializeField] private int sceneIndex;
+    [FormerlySerializedAs("sceneIndex")] [SerializeField] private int levelIndex;
 
     public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go)
     {
         if (!go) return false;
-        
-        //go.transform.position = position - new Vector3(0.5f, 0, 0);
         
         if (go.TryGetComponent<Interactable>(out var interactable))
         {
@@ -31,6 +30,7 @@ public class VentTile : TileBase
 
     private void OnInteract(InteractionAgent agent)
     {
-        Debug.Log(agent.name + " interacted with vent and will be teleported to scene " + sceneIndex);
+        Debug.Log(agent.name + " interacted with vent and will be teleported to level " + levelIndex);
+        SceneController.Instance.LoadLevelAsync(levelIndex);
     }
 }
