@@ -43,12 +43,11 @@ public static class LightChecker {
     
     /// <summary>
     /// Checks, if a point is illuminated by a light visible to Pathfinding scripts.
-    /// Use this, if you want your light-avoidant pathfinding to exclude some lights.
     /// </summary>
     /// <param name="point">The point to check</param>
     /// <param name="includeOuterRadius">If the outer radius should be included in the check, or just the inner radius (for point lights)</param>
-    /// <returns></returns>
-    public static bool IsNonIlluminatedPathfindPoint(Vector2 point, bool includeOuterRadius = true) {
+    /// <returns>If the point is illuminated by a PathfindVisibleLight</returns>
+    public static bool IsIlluminatedPathfindPoint(Vector2 point, bool includeOuterRadius = true) {
         return _pathfindLights.Any(light => IsIlluminatedByLight(point, light, includeOuterRadius));
     }
 

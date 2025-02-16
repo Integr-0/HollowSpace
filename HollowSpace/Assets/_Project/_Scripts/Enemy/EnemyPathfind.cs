@@ -137,7 +137,7 @@ public class EnemyPathfind : MonoBehaviour {
         }
     }
 
-    private bool IsIlluminated(Vector2 p) => LightChecker.IsNonIlluminatedPathfindPoint(p);
+    private bool IsIlluminated(Vector2 p) => LightChecker.IsIlluminatedPathfindPoint(p);
     private Vector2 RoundToNearestStep(Vector2 position) {
         return new Vector2(
             Mathf.Round(position.x / stepSize) * stepSize,
