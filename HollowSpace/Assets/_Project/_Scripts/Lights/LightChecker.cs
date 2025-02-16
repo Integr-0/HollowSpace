@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -7,6 +8,8 @@ using Object = UnityEngine.Object;
 public static class LightChecker {
     private static Light2D[] _lights = Array.Empty<Light2D>();
     private static bool _initialized = false;
+
+    private static List<Light2D> _pathfindLights = new();
     
     /// <summary>
     /// Checks, if a point is illuminated by any light in the scene.
@@ -37,6 +40,17 @@ public static class LightChecker {
         
         return _lights.Any(light => IsIlluminatedByLight(point, light, includeOuterRadius));
     }
+    
+    /// <summary>
+    /// Checks, if a point is illuminated by a light visible to Pathfinding scripts.
+    /// Use this, if you want your light-avoidant pathfinding to exclude some lights.
+    /// </summary>
+    /// <param name="point">The point to check</param>
+    /// <param name="includeOuterRadius">If the outer radius should be included in the check, or just the inner radius (for point lights)</param>
+    /// <returns></returns>
+    public static bool IsNonIlluminatedPathfindPoint(Vector2 point, bool includeOuterRadius = true) {
+        return _pathfindLights.Any(light => IsIlluminatedByLight(point, light, includeOuterRadius));
+    }
 
     /// <summary>
     /// Checks, if a point is illuminated by a specific light.
@@ -65,5 +79,13 @@ public static class LightChecker {
         float lightAngle = includeOuterRadius ? light.pointLightOuterAngle : light.pointLightInnerAngle;
 
         return distanceToLight <= lightRadius && angleToLight <= lightAngle * 0.5;
+    }
+
+    /// <summary>
+    /// Adds a light to the list of lights visible to Pathfinding scripts.
+    /// </summary>
+    /// <param name="light">The light to add.</param>
+    public static void AddPathfindVisibleLight(Light2D light) {
+        _pathfindLights.Add(light);
     }
 }
