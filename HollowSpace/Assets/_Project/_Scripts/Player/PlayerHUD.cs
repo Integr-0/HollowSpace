@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHUD : MonoBehaviour
@@ -32,6 +31,8 @@ public class PlayerHUD : MonoBehaviour
     {
         staminaSlider.maxValue = maxStamina;
         staminaSlider.value = currentStamina;
+        
+        staminaSlider.gameObject.SetActive(currentStamina < maxStamina);
     }
 
     private void OnDeath()
