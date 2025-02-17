@@ -322,6 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1080759908881106934}
   - component: {fileID: 8435743093216939294}
+  - component: {fileID: 6750288109205515743}
   m_Layer: 0
   m_Name: Flashlight
   m_TagString: Untagged
@@ -394,6 +395,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &6750288109205515743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363460486524946827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb3784718d1477f8e518ebb6dab15ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1387789829444334991
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,6 +720,7 @@ GameObject:
   - component: {fileID: 3629092255231150564}
   - component: {fileID: 4312629198718765025}
   - component: {fileID: 2084293398431895650}
+  - component: {fileID: 2245560307142638850}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -900,7 +914,22 @@ MonoBehaviour:
   startingBatteries: 1
   flickerThreshold: 3
   flickerSpeed: 10
-  light: {fileID: 8435743093216939294}
+  light: {fileID: 6750288109205515743}
+--- !u!114 &2245560307142638850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2755590895958906580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27e41e54b0647af9a65090e323aba07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lights:
+  - {fileID: 4569201492790872996}
+  - {fileID: 6750288109205515743}
 --- !u!1 &3215247237149865401
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,6 +1260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1952880428825687655}
   - component: {fileID: 5777487004109878850}
+  - component: {fileID: 4569201492790872996}
   m_Layer: 0
   m_Name: Highlights
   m_TagString: Untagged
@@ -1303,6 +1333,18 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &4569201492790872996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7215209065760014639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb3784718d1477f8e518ebb6dab15ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8044107350745723794
 GameObject:
   m_ObjectHideFlags: 0

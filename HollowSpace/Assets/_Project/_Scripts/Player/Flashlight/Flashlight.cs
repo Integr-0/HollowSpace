@@ -18,14 +18,13 @@ public class Flashlight : MonoBehaviour {
 
     [Header("References")] 
     [SerializeField]
-    private new Light2D light;
+    private new DimmableLight light;
 
     private float _currentBatteryLife;
     private int _currentBatteries;
     private float _defaultIntensity;
 
     private void Start() {
-        _defaultIntensity = light.intensity;
         _currentBatteries = startingBatteries;
     }
 
@@ -58,15 +57,14 @@ public class Flashlight : MonoBehaviour {
         }
         else if (!UseBattery()) {
             // If there are no batteries left, turn off the light
-            light.intensity = 0;
+            light.SetIntensity(0);
             return;
         }
+        else light.Reset();
 
         if (_currentBatteryLife <= flickerThreshold) {
-            light.intensity = Mathf.PingPong(Time.time * flickerSpeed, _defaultIntensity);
-        }
-        else {
-            light.intensity = _defaultIntensity;
+            float intensity = Mathf.PingPong(Time.time * flickerSpeed, _defaultIntensity);
+            light.SetIntensity(intensity);
         }
     }
 }

@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour {
     private bool _sprinting;
     private bool _sneaking;
     private bool _sprintRecharge;
+    private float _speedModifier = 1f;
 
     private void Awake() {
         _rb = GetComponent<Rigidbody2D>();
@@ -79,7 +80,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Move() {
-        float currentSpeed = speed;
+        float currentSpeed = speed * _speedModifier;
         if (_sneaking) {
             currentSpeed *= sneakSpeedMultiplier;
         }
@@ -96,5 +97,13 @@ public class PlayerController : MonoBehaviour {
         animator.SetBool(IsMovingHorizontal, _movement.x != 0);
         animator.SetBool(IsSneaking, _sneaking);
         animator.SetBool(IsSprinting, _sprinting && !_sneaking);
+    }
+    
+    public void AdjustSpeed(float modifier) {
+        _speedModifier = modifier;
+    }
+
+    public void ResetSpeed() {
+        _speedModifier = 1f;
     }
 }
