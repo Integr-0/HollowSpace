@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88532a7c55c4298891e3e8dabd92c98, type: 3}
+  m_Name: ButtonTile
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -295223903728522528, guid: 0c5af6c47a4f3eb49af86c1b46e5b2b9, type: 3}
+  prefab: {fileID: 2490375885655545724, guid: f40a489120389ae4c90a6058b5182ee3, type: 3}

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b2297831b8439e9b71a6a6715cedd1, type: 3}
+  m_Name: ElectricalWireTile
+  m_EditorClassIdentifier: 
+  unpoweredSprites:
+  - {fileID: -295223903728522528, guid: 0c5af6c47a4f3eb49af86c1b46e5b2b9, type: 3}
+  - {fileID: -368449532777830052, guid: 0c5af6c47a4f3eb49af86c1b46e5b2b9, type: 3}
+  - {fileID: -1343031665467793395, guid: 0c5af6c47a4f3eb49af86c1b46e5b2b9, type: 3}
+  - {fileID: -4855632531731024344, guid: 0c5af6c47a4f3eb49af86c1b46e5b2b9, type: 3}
+  - {fileID: -2108523060428839420, guid: 0c5af6c47a4f3eb49af86c1b46e5b2b9, type: 3}
+  - {fileID: 7002119394252443151, guid: 0c5af6c47a4f3eb49af86c1b46e5b2b9, type: 3}
+  poweredSprites:
+  - {fileID: 4534111384409770917, guid: d25388d58abf1db4ca04a602d3e62fad, type: 3}
+  - {fileID: 3870934113151564783, guid: d25388d58abf1db4ca04a602d3e62fad, type: 3}
+  - {fileID: -7175566335432125422, guid: d25388d58abf1db4ca04a602d3e62fad, type: 3}
+  - {fileID: -8644329926383449536, guid: d25388d58abf1db4ca04a602d3e62fad, type: 3}
+  - {fileID: -2842936368345906137, guid: d25388d58abf1db4ca04a602d3e62fad, type: 3}
+  - {fileID: -515446469531380956, guid: d25388d58abf1db4ca04a602d3e62fad, type: 3}
