@@ -4,12 +4,10 @@ using UnityEngine.Rendering.Universal;
 
 public class LightToggleEditorWindow : EditorWindow
 {
-    private GameObject _globalLight;
-    
     [MenuItem("Tools/Light Toggle")]
     public static void OpenWindow()
     {
-        GetWindow<LightToggleEditorWindow>().Show();
+        GetWindow<LightToggleEditorWindow>("Light Toggle");
     }
 
     private void OnDestroy()
@@ -19,11 +17,11 @@ public class LightToggleEditorWindow : EditorWindow
 
     private void OnGUI()
     {
-        if (GUILayout.Button("Turn on Lights"))
+        if (GUILayout.Button("Enable Lights"))
         {
             TurnOnLights();
         }
-        if (GUILayout.Button("Turn off Lights"))
+        if (GUILayout.Button("Disable Lights"))
         {
             TurnOffLights();
         }
@@ -37,12 +35,6 @@ public class LightToggleEditorWindow : EditorWindow
         {
             light.enabled = false;
         }
-        
-        // Create a new global light, if it doesn't exist already
-        if (!_globalLight)
-        {
-            CreateGlobalLight();
-        }
     }
 
     private void TurnOnLights()
@@ -52,17 +44,5 @@ public class LightToggleEditorWindow : EditorWindow
         {
             light.enabled = true;
         }
-        
-        if (_globalLight)
-        {
-            DestroyImmediate(_globalLight);
-        }
-    }
-
-    private void CreateGlobalLight()
-    {
-        _globalLight = new GameObject("Global Light");
-        var lightComponent = _globalLight.AddComponent<Light2D>();
-        lightComponent.lightType = Light2D.LightType.Global;
     }
 }

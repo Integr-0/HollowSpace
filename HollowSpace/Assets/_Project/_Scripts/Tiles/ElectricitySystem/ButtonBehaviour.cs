@@ -14,7 +14,11 @@ public class ButtonBehaviour : MonoBehaviour {
 
     public void OnInteract(InteractionAgent _) {
         Debug.Log("Button pressed at " + _position);
-
+        PowerWires();
+    }
+    
+    [ContextMenu("Press Button")]
+    private void PowerWires() {
         // This is a temporary solution until I can fix that annoying bug
         var tempTilemap = GameObject.Find("FloorTileMap").GetComponent<Tilemap>();
 
