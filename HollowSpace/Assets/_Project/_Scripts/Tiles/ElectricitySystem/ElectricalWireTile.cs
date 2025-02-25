@@ -19,11 +19,6 @@ public class ElectricalWireTile : TileBase {
     private readonly Dictionary<Vector3Int, bool> _poweredTiles = new();
 
     public override bool StartUp(Vector3Int position, ITilemap tilemap, GameObject go) {
-        if (!IsSameTile(tilemap, position)) {
-            Debug.Log("Something went wrong!", this);
-            return false;
-        }
-        
         _poweredTiles.TryAdd(position, false);
         return true;
     }

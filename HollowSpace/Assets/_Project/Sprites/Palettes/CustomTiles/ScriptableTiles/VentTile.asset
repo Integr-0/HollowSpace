@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9147ad7fd65f41eb19bd63bbcf2bc6c6, type: 3}
   m_Name: VentTile
   m_EditorClassIdentifier: 
-  sprite: {fileID: 4065566748078897464, guid: 0c5af6c47a4f3eb49af86c1b46e5b2b9, type: 3}
+  sprite: {fileID: 2045085872483041015, guid: f41b94c62047f88419be877cd6b00a2d, type: 3}
   interactionPrefab: {fileID: 2490375885655545724, guid: 51fce4b96654dd85e94e3c20bb07d85c, type: 3}
   levelIndex: 0
