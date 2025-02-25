@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 [RequireComponent(typeof(Enemy))]
 public class EnemyPathfind : MonoBehaviour {
-    
     private class Node {
         public Vector2 Position;
         public Node Parent;
@@ -24,6 +23,14 @@ public class EnemyPathfind : MonoBehaviour {
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private float stepSize = 0.5f;
     [SerializeField] private int maxIterations = 1000;
+    
+    [Header("Gizmos")]
+    [SerializeField] private bool drawOpenNodes;
+    [SerializeField] private bool drawClosedNodes;
+    [SerializeField] private bool drawPath;
+    [SerializeField] private bool drawAttackRange;
+    [SerializeField] private bool drawTree;
+    
     private Enemy _enemy;
     private float _cooldown;
     private Health _targetHealth;
@@ -92,13 +99,17 @@ public class EnemyPathfind : MonoBehaviour {
         _targetHealth.TakeDamage(_enemy.stats.damage);
     }
 
-    private List<Vector2> FindPath(Vector2 start, Vector2 goal) {
+    private List<Vector2> FindPath(Vector2 start, Vector2 goal)
+    {
+        if (!IsAccessible(goal)) return new List<Vector2>();
+        if (CanJump(start, goal)) return new List<Vector2> { start, goal };
+        
         start = RoundToNearestStep(start);
         goal = RoundToNearestStep(goal);
 
-       _openSet = new List<Node> { new Node(start, null, 0, Vector2.Distance(start, goal)) };
+        _openSet = new List<Node> { new(start, null, 0, Vector2.Distance(start, goal)) };
         _closedSet = new HashSet<Vector2>();
-        int iterations = 0;
+        var iterations = 0;
 
         while (_openSet.Count > 0) {
             if (iterations++ > maxIterations) {
@@ -106,9 +117,28 @@ public class EnemyPathfind : MonoBehaviour {
                 break;
             }
 
-            _openSet.Sort((a, b) => a.F.CompareTo(b.F));
-            var currentNode = _openSet[0];
-            _openSet.RemoveAt(0);
+            var bestNodeIndex = -1;
+            var bestF = float.MaxValue;
+            var bestH = float.MaxValue;
+            
+            for (var i = 0; i < _openSet.Count; i++)
+            {
+                if (_closedSet.Contains(_openSet[i].Position)) continue;
+                var node = _openSet[i];
+                if (node.F < bestF) {
+                    bestF = node.F;
+                    bestH = node.G;
+                    bestNodeIndex = i;
+                } else if (Mathf.Approximately(node.F, bestF) && node.H < bestH) {
+                    bestH = node.G;
+                    bestF = node.F;
+                    bestNodeIndex = i;
+                }
+            }
+            
+            var currentNode = _openSet[bestNodeIndex];
+            _openSet.RemoveAt(bestNodeIndex);
+            _closedSet.Add(currentNode.Position);
 
             if (currentNode.Position == goal) {
                 var path = new List<Vector2>();
@@ -118,10 +148,33 @@ public class EnemyPathfind : MonoBehaviour {
                 }
 
                 path.Reverse();
+                
+                var currentPosition = 0;
+                while (path[currentPosition] != goal)
+                {
+                    var jumpEnd = -1;
+                    for (var i = currentPosition + 1; i < path.Count; i++)
+                    {
+                        if (CanJump(path[currentPosition], path[i]))
+                        {
+                            jumpEnd = i;
+                        }
+                    }
+
+                    if (jumpEnd != -1)
+                    {
+                        path.RemoveRange(currentPosition + 1, jumpEnd - currentPosition - 1);
+                        currentPosition++;
+                    }
+                    else
+                    {
+                        currentPosition++;
+                    }
+                }
+
                 return path;
             }
 
-            _closedSet.Add(currentNode.Position);
 
             foreach (var neighbor in GetNeighbors(currentNode.Position)) {
                 if (_closedSet.Contains(neighbor) || IsIlluminated(neighbor)) continue;
@@ -143,9 +196,32 @@ public class EnemyPathfind : MonoBehaviour {
         Debug.LogWarning("Pathfinding failed to find a path.");
         return new List<Vector2>();
     }
+    
+    private bool CanJump(Vector2 a, Vector2 b)
+    {
+        // check if there is a way from a to b that doesnt go trough obstacles and light
+        var direction = (b - a).normalized;
+        var distance = Vector2.Distance(a, b);
+        var step = stepSize;
+        var currentPosition = a;
+        while (Vector2.Distance(currentPosition, b) > step)
+        {
+            currentPosition += direction * step;
+            if (Physics2D.OverlapCircle(currentPosition, 0.1f, obstacleLayer) || IsIlluminated(currentPosition))
+            {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    private bool IsAccessible(Vector2 position) {
+        return !Physics2D.OverlapCircle(position, 0.1f, obstacleLayer) && !IsIlluminated(position);
+    }
 
     private IEnumerable<Vector2> GetNeighbors(Vector2 position) {
-        var directions = new Vector2[] {
+        var directions = new[] {
             Vector2.up, Vector2.down, Vector2.left, Vector2.right,
             new Vector2(1, 1), new Vector2(1, -1), new Vector2(-1, 1), new Vector2(-1, -1) // Diagonal directions
         };
@@ -171,33 +247,39 @@ public class EnemyPathfind : MonoBehaviour {
     }
 
     
-    private void OnDrawGizmosSelected() {
+    private void OnDrawGizmos() {
         if (!Application.isPlaying) return;
         
         // Attacking
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, _enemy.stats.attackRange);
-        
-        // Pathfinding
-        if (_path.Count > 0) {
-            Gizmos.color = Color.green;
-            for (int i = 0; i < _path.Count - 1; i++) {
-                Gizmos.DrawLine(_path[i], _path[i + 1]);
-            }
+        if (drawAttackRange)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, _enemy.stats.attackRange);
         }
         
         // Pathfinding data
-        if (_openSet != null) {
+        if (_openSet != null && drawOpenNodes) {
             Gizmos.color = Color.blue;
             foreach (var node in _openSet) {
                 Gizmos.DrawWireSphere(node.Position, 0.1f);
+                if (node.Parent == null || !drawTree) continue;
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawLine(node.Position, node.Parent.Position);
             }
         }
         
-        if (_closedSet != null) {
+        if (_closedSet != null && drawClosedNodes) {
             Gizmos.color = Color.red;
             foreach (var position in _closedSet) {
                 Gizmos.DrawWireSphere(position, 0.1f);
+            }
+        }
+        
+        // Pathfinding
+        if (_path.Count > 0 && drawPath) {
+            Gizmos.color = Color.green;
+            for (int i = 0; i < _path.Count - 1; i++) {
+                Gizmos.DrawLine(_path[i], _path[i + 1]);
             }
         }
     }
