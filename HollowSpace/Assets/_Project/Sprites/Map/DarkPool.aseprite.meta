@@ -136,4 +136,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 96, y: 32}
+  canvasSize: {x: 160, y: 160}

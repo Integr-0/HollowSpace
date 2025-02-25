@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: db9cce1b145fbf54a9ac06e11dc0c003
+guid: b8d754cc0657439458c37322b2f14157
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -124,8 +124,8 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -988515182
-    name: GroundTiles
+    guid: -2136669840
+    name: PoweredCables
     layerFlags: 0
     layerType: 0
     blendMode: 0
@@ -136,4 +136,4 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 96, y: 32}
+  canvasSize: {x: 128, y: 128}
