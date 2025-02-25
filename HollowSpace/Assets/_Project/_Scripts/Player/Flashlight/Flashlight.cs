@@ -11,7 +11,7 @@ public class Flashlight : MonoBehaviour {
 
     [Header("Flicker")] 
     [SerializeField, Tooltip("At what battery life the light will start flickering")]
-    private float flickerThreshold = 10f;
+    private float flickerThreshold = 3f;
 
     [SerializeField, Tooltip("How fast the light will flicker")]
     private float flickerSpeed = 10f;
@@ -26,6 +26,7 @@ public class Flashlight : MonoBehaviour {
 
     private void Start() {
         _currentBatteries = startingBatteries;
+        _defaultIntensity = light.Intensity;
     }
 
     /// <summary>
@@ -60,7 +61,7 @@ public class Flashlight : MonoBehaviour {
             light.SetIntensity(0);
             return;
         }
-        else light.Reset();
+        else light.SetIntensity(_defaultIntensity);
 
         if (_currentBatteryLife <= flickerThreshold) {
             float intensity = Mathf.PingPong(Time.time * flickerSpeed, _defaultIntensity);

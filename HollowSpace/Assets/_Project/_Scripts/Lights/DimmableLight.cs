@@ -4,12 +4,12 @@ using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Light2D))]
 public class DimmableLight : MonoBehaviour {
-    private float _intensity;
+    public float Intensity { get; private set; }
     private Light2D _light2D;
     
     private void Awake() {
         _light2D = GetComponent<Light2D>();
-        _intensity = _light2D.intensity;
+        Intensity = _light2D.intensity;
     }
     
     public void Dim(float factor) {
@@ -24,7 +24,7 @@ public class DimmableLight : MonoBehaviour {
         StartCoroutine(DimRoutine(_light2D.intensity * factor, duration));
     }
     public void Reset() {
-        _light2D.intensity = _intensity;
+        _light2D.intensity = Intensity;
     }
     public void ResetAsync(float duration) {
         if (duration <= 0) {
@@ -32,7 +32,7 @@ public class DimmableLight : MonoBehaviour {
             return;
         }
         
-        StartCoroutine(DimRoutine(_intensity, duration));
+        StartCoroutine(DimRoutine(Intensity, duration));
     }
     public void SetIntensity(float intensity) {
         _light2D.intensity = intensity;
