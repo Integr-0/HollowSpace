@@ -77,7 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
-    mosaicPadding: 0
+    mosaicPadding: 6
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -90,14 +90,14 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
-    mosaicPadding: 0
+    mosaicPadding: 6
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638760701620022299
+  platformSettingsDirtyTick: 638760707550088190
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -144,12 +144,12 @@ ScriptedImporter:
   spriteSheetImportData:
   - name: DarkPool_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 32
+      x: 38
       y: 128
       width: 32
       height: 32
@@ -164,12 +164,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_1
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 64
+      x: 70
       y: 128
       width: 32
       height: 32
@@ -184,12 +184,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_2
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 96
+      x: 102
       y: 128
       width: 32
       height: 32
@@ -204,12 +204,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_3
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 128
+      x: 134
       y: 128
       width: 32
       height: 32
@@ -224,12 +224,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_4
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 160
+      x: 166
       y: 128
       width: 32
       height: 32
@@ -244,12 +244,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_5
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
+      x: 6
       y: 96
       width: 32
       height: 32
@@ -264,12 +264,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_6
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 32
+      x: 38
       y: 96
       width: 32
       height: 32
@@ -284,12 +284,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_7
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 64
+      x: 70
       y: 96
       width: 32
       height: 32
@@ -304,12 +304,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_8
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 96
+      x: 102
       y: 96
       width: 32
       height: 32
@@ -324,12 +324,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_9
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 128
+      x: 134
       y: 96
       width: 32
       height: 32
@@ -344,12 +344,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_10
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 160
+      x: 166
       y: 96
       width: 32
       height: 32
@@ -364,12 +364,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_11
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
+      x: 6
       y: 64
       width: 32
       height: 32
@@ -384,12 +384,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_12
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 32
+      x: 38
       y: 64
       width: 32
       height: 32
@@ -404,12 +404,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_13
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 64
+      x: 70
       y: 64
       width: 32
       height: 32
@@ -424,12 +424,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_14
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 96
+      x: 102
       y: 64
       width: 32
       height: 32
@@ -444,12 +444,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_15
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 128
+      x: 134
       y: 64
       width: 32
       height: 32
@@ -464,12 +464,12 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   - name: DarkPool_16
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 160
+      x: 166
       y: 64
       width: 32
       height: 32
@@ -489,11 +489,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
+      x: 6
       y: 32
       width: 32
       height: 32
-    spriteID: 6bc59af805364ff4eaf00465ad5b1a7a
+    spriteID: b91eca2da086397438882653b1edb79a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -509,11 +509,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 32
+      x: 38
       y: 32
       width: 32
       height: 32
-    spriteID: 26cb94fae06360b47b15c42075b29b22
+    spriteID: d624eaa2a04c5594a867dac588dcb633
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -529,11 +529,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 64
+      x: 70
       y: 32
       width: 32
       height: 32
-    spriteID: 252016222d3f33d4baf18fa884e25f20
+    spriteID: bef3f6d15d0fd11468e1936bd30e6f80
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -549,11 +549,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 96
+      x: 102
       y: 32
       width: 32
       height: 32
-    spriteID: eea06ebb7d224ad44b26bb0db1a5ddc8
+    spriteID: 6a762c18dc9dfc7458332f3242a7f187
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -569,11 +569,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 128
+      x: 134
       y: 32
       width: 32
       height: 32
-    spriteID: ebfade5275610f94197ee51c3464c8e3
+    spriteID: 54dab5233a8dd6945b1bc911291d2d91
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -589,11 +589,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 160
+      x: 166
       y: 32
       width: 32
       height: 32
-    spriteID: f58627b9aabbb3441ac3c33680db09bd
+    spriteID: 87239672bb188754bbfb81a0f3661991
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -609,11 +609,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 0
+      x: 6
       y: 0
       width: 32
       height: 32
-    spriteID: 3844c2f370aee844fa55965f471941a8
+    spriteID: 5b2bcd7b0c2804b4fabda27ce4e2e041
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -629,51 +629,11 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 32
+      x: 38
       y: 0
       width: 32
       height: 32
-    spriteID: b91b7f9a5af2dcd41906753a59f8e05e
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: DarkPool_25
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 64
-      y: 0
-      width: 32
-      height: 32
-    spriteID: d41efe423a9cfee4e80f1da845a58434
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
-  - name: DarkPool_26
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 128
-      y: 0
-      width: 32
-      height: 32
-    spriteID: bb52483cd456cb740a847e58c4ea8089
+    spriteID: baacf5313e58b634e89270df55aefb58
     spriteBone: []
     spriteOutline: []
     vertices: []
