@@ -351,6 +351,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2084293398431895650, guid: 4cd4f214d6b746c08bd3bd4b19dd6c88, type: 3}
+      propertyPath: batteryLife
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 2755590895958906580, guid: 4cd4f214d6b746c08bd3bd4b19dd6c88, type: 3}
       propertyPath: m_Name
       value: Player
