@@ -1,5 +1,8 @@
+using System;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class Flashlight : MonoBehaviour {
     [Header("Flashlight Settings")] 
@@ -17,14 +20,22 @@ public class Flashlight : MonoBehaviour {
     private float flickerSpeed = 10f;
 
     [Header("References")] 
-    [SerializeField]
-    private new DimmableLight light;
+    [SerializeField] private new DimmableLight light;
+    [Space, SerializeField] private TMP_Text batteryCounter;
+    [SerializeField] private Image batteryStatus;
+
+    [Header("Battery UI")]
+    [SerializeField, Tooltip("The sprites for the different power levels of the battery in order (lowest first)")] 
+    private Sprite[] batterySprites;
 
     private float _currentBatteryLife;
     private int _currentBatteries;
     private float _defaultIntensity;
 
     private void Start() {
+        if (batterySprites.Length != 5) 
+            throw new ArgumentException("Battery sprites must have a length of 5");
+        
         _currentBatteries = startingBatteries;
         _defaultIntensity = light.Intensity;
     }
@@ -67,5 +78,24 @@ public class Flashlight : MonoBehaviour {
             float intensity = Mathf.PingPong(Time.time * flickerSpeed, _defaultIntensity);
             light.SetIntensity(intensity);
         }
+        
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        batteryCounter.text = _currentBatteries.ToString();
+        batteryStatus.sprite = GetCurrentBatteryStatus();
+    }
+
+    private Sprite GetCurrentBatteryStatus()
+    {
+        if (_currentBatteryLife <= flickerThreshold) return batterySprites[0];
+        
+        float batteryPercentage = _currentBatteryLife / batteryLife;
+        if (batteryPercentage >= 0.7f) return batterySprites[4];
+        if (batteryPercentage >= 0.5f) return batterySprites[3];
+        if (batteryPercentage >= 0.3f) return batterySprites[2];
+        return batterySprites[1];
     }
 }
