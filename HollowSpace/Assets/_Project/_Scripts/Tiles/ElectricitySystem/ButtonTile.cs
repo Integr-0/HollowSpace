@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-[CreateAssetMenu(menuName = "Tiles/Button Tile")]
+[CreateAssetMenu(menuName = "Tiles/Electricity/Button Tile")]
 public class ButtonTile : TileBase {
     [SerializeField] private Sprite sprite;
     [SerializeField] private GameObject prefab;

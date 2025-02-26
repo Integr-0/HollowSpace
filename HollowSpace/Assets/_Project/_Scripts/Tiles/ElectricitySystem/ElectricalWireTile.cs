@@ -11,7 +11,7 @@ using UnityEngine.Tilemaps;
 using UnityEditor;
 #endif
 
-[CreateAssetMenu(menuName = "Tiles/Electrical Wire Tile")]
+[CreateAssetMenu(menuName = "Tiles/Electricity/Electrical Wire Tile")]
 public class ElectricalWireTile : TileBase {
     public Sprite[] unpoweredSprites;
     public Sprite[] poweredSprites;
